@@ -13,9 +13,9 @@ import java.math.BigDecimal;
  */
 public class DailyRentedItem extends Item {
     
-    BigDecimal dailyPrice;
+    BigDecimal dailyPrice; // FIXME move this field to the super class and rename it to periodPrice.
     
-    public DailyRentedItem(String name, BigDecimal dailyPrice){
+    public DailyRentedItem(String name, BigDecimal dailyPrice){ // FIXME move this constructor to the super class
         super.setName(name);
         this.setDailyPrice(dailyPrice);
     }

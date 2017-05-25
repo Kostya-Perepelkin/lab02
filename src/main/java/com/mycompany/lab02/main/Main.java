@@ -75,7 +75,7 @@ public class Main {
             
             itemType = scanner.next();
             itemPrice = BigDecimal.valueOf(Double.parseDouble(scanner.next()));
-            if (itemType.equalsIgnoreCase("weekly")){
+            if (itemType.equalsIgnoreCase("weekly")){ // FIXME apply Factory Pattern to create needed object based on condition
                 itemList.add(new WeeklyRentedItem(itemName, itemPrice));
             }
             else if (itemType.equalsIgnoreCase("daily")){
@@ -89,7 +89,9 @@ public class Main {
         return itemList;
     }
     
-    
+
+    // FIXME here you do not need scanner to read values. You already have all of them in the itemList
+    // Refactor this method to calculate totalPrice only
     public static BigDecimal calcualteTotalPrice(String input, List<Item> itemList){
         BigDecimal totalPrice = BigDecimal.valueOf(0);
         

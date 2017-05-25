@@ -13,9 +13,9 @@ import java.math.RoundingMode;
  * @author Константин
  */
 public class WeeklyRentedItem extends Item{
-    BigDecimal weeklyPrice;
+    BigDecimal weeklyPrice; // FIXME move this field to the super class and rename it to periodPrice.
     
-    public WeeklyRentedItem(String name, BigDecimal weeklyPrice){
+    public WeeklyRentedItem(String name, BigDecimal weeklyPrice){ // FIXME move this constructor to the super class
         super.setName(name);
         this.setWeeklyPrice(weeklyPrice);
     }
