@@ -13,6 +13,12 @@ import java.math.BigDecimal;
  */
 public abstract class Item {
     private String name;
+    private BigDecimal periodPrice;
+    
+    public Item(String name, BigDecimal price){
+        this.name = name;
+        this.periodPrice = price;
+    }
 
     public String getName() {
         return name;
@@ -20,6 +26,14 @@ public abstract class Item {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public BigDecimal getPeriodPrice() {
+        return periodPrice;
+    }
+
+    public void setPeriodPrice(BigDecimal periodPrice) {
+        this.periodPrice = periodPrice;
     }
     
     public abstract BigDecimal getPriceForPeriod(int numberOfDays);

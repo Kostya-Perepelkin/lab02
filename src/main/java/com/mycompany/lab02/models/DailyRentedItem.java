@@ -13,24 +13,13 @@ import java.math.BigDecimal;
  */
 public class DailyRentedItem extends Item {
     
-    BigDecimal dailyPrice; // FIXME move this field to the super class and rename it to periodPrice.
-    
     public DailyRentedItem(String name, BigDecimal dailyPrice){ // FIXME move this constructor to the super class
-        super.setName(name);
-        this.setDailyPrice(dailyPrice);
+        super(name, dailyPrice);
     }
     
-    public BigDecimal getDailyPrice() {
-        return dailyPrice;
-    }
-
-    public void setDailyPrice(BigDecimal dailyPrice) {
-        this.dailyPrice = dailyPrice;
-    }
-
     @Override
     public BigDecimal getPriceForPeriod(int numberOfDays) {
-        return dailyPrice.multiply(BigDecimal.valueOf(numberOfDays));
+        return super.getPeriodPrice().multiply(BigDecimal.valueOf(numberOfDays));
     }
     
     @Override
@@ -38,7 +27,7 @@ public class DailyRentedItem extends Item {
         String result = "";
         result += "Item name: \t\t" + super.getName() + " \n";
         result += "Min period for rent: \t" + "1 day" + " \n";
-        result += "Price for rent: \t" + dailyPrice + " per day";
+        result += "Price for rent: \t" + super.getPeriodPrice() + " per day";
         return result;
     }
 }

@@ -5,6 +5,7 @@
  */
 package com.mycompany.lab02.main;
 
+import com.mycompany.factory.ItemFactory;
 import com.mycompany.lab02.models.DailyRentedItem;
 import com.mycompany.lab02.models.Item;
 import com.mycompany.lab02.models.WeeklyRentedItem;
@@ -64,6 +65,8 @@ public class Main {
         String itemName = "";
         BigDecimal itemPrice = BigDecimal.valueOf(-1);
         
+        ItemFactory itemFactory = new ItemFactory();
+        
         while (!endOfSection && scanner.hasNextLine()){
             
             
@@ -75,15 +78,9 @@ public class Main {
             
             itemType = scanner.next();
             itemPrice = BigDecimal.valueOf(Double.parseDouble(scanner.next()));
-            if (itemType.equalsIgnoreCase("weekly")){ // FIXME apply Factory Pattern to create needed object based on condition
-                itemList.add(new WeeklyRentedItem(itemName, itemPrice));
-            }
-            else if (itemType.equalsIgnoreCase("daily")){
-                itemList.add(new DailyRentedItem(itemName, itemPrice));
-            }
-            else {
-                System.out.println("ERROR-002: Unknown itemType");
-            }
+            
+            Item newItem = itemFactory.getItem(itemType, itemName, itemPrice);
+            itemList.add(newItem);
         }
         
         return itemList;
@@ -92,6 +89,7 @@ public class Main {
 
     // FIXME here you do not need scanner to read values. You already have all of them in the itemList
     // Refactor this method to calculate totalPrice only
+    // UPDATE: here we read another input for how many days which items is going to be rented, itemList is passed as List already
     public static BigDecimal calcualteTotalPrice(String input, List<Item> itemList){
         BigDecimal totalPrice = BigDecimal.valueOf(0);
         

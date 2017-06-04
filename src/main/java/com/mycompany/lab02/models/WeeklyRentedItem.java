@@ -13,25 +13,16 @@ import java.math.RoundingMode;
  * @author Константин
  */
 public class WeeklyRentedItem extends Item{
-    BigDecimal weeklyPrice; // FIXME move this field to the super class and rename it to periodPrice.
     
     public WeeklyRentedItem(String name, BigDecimal weeklyPrice){ // FIXME move this constructor to the super class
-        super.setName(name);
-        this.setWeeklyPrice(weeklyPrice);
-    }
-    
-    public BigDecimal getWeeklyPrice() {
-        return weeklyPrice;
-    }
-
-    public void setWeeklyPrice(BigDecimal weeklyPrice) {
-        this.weeklyPrice = weeklyPrice;
+        super(name, weeklyPrice);
     }
 
     @Override
     public BigDecimal getPriceForPeriod(int numberOfDays) {
        //minimum period is 7 days
        BigDecimal totalPrice = BigDecimal.valueOf(0);
+       BigDecimal weeklyPrice = super.getPeriodPrice();
        if (numberOfDays > 7){
            //calcualte price for perios exceeding 7 days on dayly basis 
            int numberOfWeeks = numberOfDays / 7;
@@ -53,7 +44,7 @@ public class WeeklyRentedItem extends Item{
         String result = "";
         result += "Item name: \t\t" + super.getName() + " \n";
         result += "Min period for rent: \t" + "7 days" + " \n";
-        result += "Price for rent: \t" + weeklyPrice + " per 7 days";
+        result += "Price for rent: \t" + super.getPeriodPrice() + " per 7 days";
         return result;
     }
     
